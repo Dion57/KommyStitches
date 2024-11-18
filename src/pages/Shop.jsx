@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import MenHero from '../../public/assets/menHero.jpg'
-import WomenHero from '../../public/assets/womenheroo.jpg'
+import WomenHero from '../../public/assets/womenHeroo.jpg'
 import { Link } from 'react-router-dom'
 
 

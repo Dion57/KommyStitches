@@ -27,7 +27,7 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/root aquasec/trivy image reactnode'
+                sh 'docker run --rm trivy deonshelli/my-react-app analyze'
             }
         }
 

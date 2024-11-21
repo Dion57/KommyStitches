@@ -23,5 +23,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Port mapping
 EXPOSE 80 
 
+RUN apk update && apk upgrade
+
 # start nginx server
 CMD ["nginx", "-g", "daemon off;"]

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: react-app
-        image: deonshelli/my-react-app    # Replace with your image name
+        image: deonshelli/my-react-app:latest    # Replace with your image name
         ports:
         - containerPort: 80  # Matches EXPOSE in Dockerfile
         resources:
@@ -48,6 +48,7 @@ spec:
     app: react-app
   ports:
     - protocol: TCP
-      port: 80   # External port
-      targetPort: 80 # Container port
-  type: LoadBalancer  # Exposes the service via cloud provider's load balancer (change to NodePort for local setup)
+      port: 80         # External port to access the service
+      targetPort: 80   # Container port
+      nodePort: 30007  # Optional: Specify a fixed NodePort (default is randomly assigned in the 30000–32767 range)
+  type: NodePort       # Use NodePort instead of LoadBalancer

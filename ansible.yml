@@ -1,0 +1,9 @@
+- name: Deploy React App on Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Apply Kubernetes Deployment
+      command: kubectl apply -f ./deployment1.yml
+
+    - name: Print deployment message
+      shell: echo "Deploying React app on localhost"

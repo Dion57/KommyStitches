@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools {
-	maven 'maven'
-    }		
+        maven 'maven'
+    }           
 
     stages {
         stage('Checkout') {
@@ -21,20 +21,23 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t deonshelli/my-react-app .'
+                sh '''
+                docker build -t deonshelli/my-react-app .
+                docker push deonshelli/my-react-app
+                '''
             }
         }
 
         stage('Trivy Scan') {
             steps {
-                sh 'docker run --rm trivy deonshelli/my-react-app analyze'
+                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image deonshelli/my-react-app'
             }
         }
 
         stage('Deploy') {
             steps {
                 sh '''
-            ansible-playbook -i inventory deployment.yml
+            ansible-playbook -i localhost, ansible.yml
         '''
             }
         }
